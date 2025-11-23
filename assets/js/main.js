@@ -259,8 +259,15 @@ document.addEventListener('DOMContentLoaded', function() {
     renderPostsList();
     setupSearch();
     
-    // Load first post by default
-    if (posts.length > 0) {
-        setTimeout(() => loadPost(posts[0].file), 1000);
+    // Show welcome message instead of auto-loading post
+    const contentDiv = document.getElementById('blog-content');
+    if (contentDiv) {
+        contentDiv.innerHTML = `
+            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                <h2 style="color: var(--accent-color); margin-bottom: 1rem;">Welcome to My Blog</h2>
+                <p>Click on any blog post above to start reading.</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">✨ Use the search bar to find posts by title or tags</p>
+            </div>
+        `;
     }
 });
