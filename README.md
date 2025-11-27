@@ -1,4 +1,4 @@
-# Dr. Raul Gaikwad - Personal Blog
+# Dr. Rahul Gaikwad - Personal Blog
 
 A static blog website built with HTML, CSS, and JavaScript. Features markdown-based blog posts with dynamic loading and a dark theme with purple accents.
 
