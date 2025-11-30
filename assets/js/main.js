@@ -1,3 +1,23 @@
+// Theme Toggle Functionality
+function initTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    
+    // Set initial theme
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Theme toggle event
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+}
+
 // Blog posts data with tags - sorted by date DESC
 // TO ADD NEW BLOG: Add entry here with matching .md file
 const posts = [
@@ -256,8 +276,10 @@ async function loadPost(filename) {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
     renderPostsList();
     setupSearch();
+
     
     // Show welcome message instead of auto-loading post
     const contentDiv = document.getElementById('blog-content');
