@@ -149,8 +149,62 @@ function renderPostsList(postsToRender = posts) {
             <div class="post-tags">${tagsHTML}</div>
         `;
         
-        // Add click event to load post
-        postElement.addEventListener('click', () => loadPost(post.file));
+        // Add click event to open post in new tab
+        postElement.addEventListener('click', () => {
+        const newTab = window.open('', '_blank');
+        newTab.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>${post.title} - Dr. Rahul Gaikwad</title>
+            <link rel="stylesheet" href="assets/css/style.css">
+        </head>
+        <body>
+            <nav class="navbar">
+                <div class="nav-container">
+                    <div class="nav-links">
+                        <a href="index.html" class="nav-link">← Back to Blog</a>
+                    </div>
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </button>
+                </div>
+            </nav>
+            <main class="content">
+                <div id="blog-content">Loading...</div>
+            </main>
+            <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+            <script>
+                // Theme initialization for new tab
+                function initTheme() {
+                    const themeToggle = document.getElementById('theme-toggle');
+                    const currentTheme = localStorage.getItem('theme') || 'dark';
+                    document.documentElement.setAttribute('data-theme', currentTheme);
+                    if (themeToggle) {
+                        themeToggle.addEventListener('click', () => {
+                            const currentTheme = document.documentElement.getAttribute('data-theme');
+                            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                            document.documentElement.setAttribute('data-theme', newTheme);
+                            localStorage.setItem('theme', newTheme);
+                        });
+                    }
+                }
+                
+                ${parseFrontmatter.toString()}
+                ${createBlogHeader.toString()}
+                ${loadPost.toString()}
+                
+                // Initialize everything
+                initTheme();
+                loadPost('${post.file}');
+            </script>
+        </body>
+        </html>
+    `);
+});
         postsContainer.appendChild(postElement);
     });
 }
