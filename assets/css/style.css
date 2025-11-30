@@ -8,6 +8,16 @@
     --border-color: #30363d;
     --hover-bg: #21262d;
 }
+/* Light Theme Variables */
+[data-theme="light"] {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f8f9fa;
+    --accent-color: #8a2be2;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --hover-bg: #e9ecef;
+}
 
 /* Base Styles */
 * {
@@ -24,11 +34,58 @@ body {
 }
 
 /* Navigation */
-.navbar {
-    background-color: var(--secondary-bg);
-    border-bottom: 1px solid var(--border-color);
-    padding: 1rem 0;
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.sun-icon,
+.moon-icon {
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .moon-icon {
+    display: inline;
+}
+
+[data-theme="light"] .sun-icon {
+    display: inline;
+}
+
+[data-theme="light"] .moon-icon {
+    display: none;
+}
+
 
 .nav-container {
     max-width: 1200px;
