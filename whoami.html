@@ -33,21 +33,29 @@
     </script>
     
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-    <div class="nav-container">
-        <div class="nav-links">
-            <a href="index.html" class="nav-link">Blogs</a>
-            <a href="whoami.html" class="nav-link active">$whoami</a>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo">DRG Blogs</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Blogs</a>
+                    <a href="whoami.html" class="nav-link active">$ whoami</a>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+            </div>
         </div>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <span class="sun-icon">☀️</span>
-            <span class="moon-icon">🌙</span>
-        </button>
-    </div>
-</nav>
+    </nav>
 
     <!-- About Section -->
     <section class="about">
