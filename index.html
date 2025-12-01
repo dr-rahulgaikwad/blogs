@@ -33,48 +33,65 @@
     </script>
     
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-    <div class="nav-container">
-        <div class="nav-links">
-            <a href="index.html" class="nav-link">Blogs</a>
-            <a href="whoami.html" class="nav-link">$whoami</a>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo">DRG Blogs</a>
+            </div>
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Blogs</a>
+                    <a href="whoami.html" class="nav-link">$ whoami</a>
+                </div>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+            </div>
         </div>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <span class="sun-icon">☀️</span>
-            <span class="moon-icon">🌙</span>
-        </button>
-    </div>
-</nav>
-
+    </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <pre class="ascii-title">
- ____            ____       _           _    ____       _ _                         _
-|  _ \ _ __     |  _ \ __ _| |__  _   _| |  / ___| __ _(_) | ____      ____  _____ | |
-| | | | '__|    | |_) / _` | '_ \| | | | | | |  _ / _` | | |/ /\ \ /\ / / _` |/ _ `| |
-| |_| | |    _  |  _ < (_| | | | | |_| | | | |_| | (_| | |   <  \ V  V / (_| | (_| | |
-|____/|_|   |_| |_| \_\__,_|_| |_|\__,_|_|  \____|\__,_|_|_|\_\  \_/\_/ \__,_|\__,_|_|
-            </pre>
-            <h2 class="subtitle">
-                <span id="typing-text"></span>
-                <span class="cursor">|</span>
-            </h2>
+        <div class="hero-background">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Dr. Rahul Gaikwad — Building, Writing, Sharing</h1>
+                <p class="hero-subtitle">Cloud Architecture • DevOps • AI • AIOps</p>
+                <button class="cta-button" onclick="document.querySelector('.blog-list').scrollIntoView({behavior: 'smooth'})">Read latest blog</button>
+            </div>
+            <div class="hero-illustration">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="icon icon-cloud">☁</div>
+                <div class="icon icon-code">⚡</div>
+                <div class="icon icon-ai">🤖</div>
+            </div>
         </div>
     </section>
 
     <!-- Blog List Section -->
     <section class="blog-list">
-        <h3>Recent Posts</h3>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search posts by title or tags..." />
-        </div>
-        <div id="posts-container">
-            <!-- Blog posts will be loaded here -->
+        <div class="blog-list-container">
+            <h2 class="section-title">Recent Posts</h2>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search posts by title or tags..." />
+            </div>
+            <div id="posts-container">
+                <!-- Blog posts will be loaded here -->
+            </div>
         </div>
     </section>
 
