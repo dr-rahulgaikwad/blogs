@@ -1,0 +1,12 @@
+{
+  "name": "dr-rahul-gaikwad-blog",
+  "version": "1.0.0",
+  "description": "Personal blog with automated post discovery",
+  "scripts": {
+    "update-posts": "node update-posts.js",
+    "dev": "python -m http.server 8000",
+    "build": "npm run update-posts"
+  },
+  "author": "Dr. Rahul Gaikwad",
+  "license": "MIT"
+}

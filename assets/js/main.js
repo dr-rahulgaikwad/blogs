@@ -5,6 +5,7 @@ function initTheme() {
     
     // Set initial theme
     document.documentElement.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
     
     // Theme toggle event
     if (themeToggle) {
@@ -14,102 +15,123 @@ function initTheme() {
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
         });
     }
 }
 
-// Blog posts data with tags - sorted by date DESC
-// TO ADD NEW BLOG: Add entry here with matching .md file
-const posts = [
-    // {
-    //     title: "Your New Blog Title",
-    //     file: "your-new-blog.md",
-    //     date: "2024-02-10",
-    //     description: "Brief description for the card",
-    //     tags: ["tag1", "tag2", "tag3"]
-    // },
-    {
-        title: "Building Scalable AWS Cloud Architecture",
-        file: "aws-cloud-architecture.md",
-        date: "2024-02-05",
-        description: "Learn how to design and implement scalable cloud architectures on AWS using best practices.",
-        tags: ["aws", "cloud", "architecture", "devops"]
-    },
-    {
-        title: "My Journey from Beginner to Cloud Architect",
-        file: "my-coding-journey.md",
-        date: "2024-02-01",
-        description: "A personal reflection on my coding journey, challenges faced, and lessons learned.",
-        tags: ["personal", "career", "journey", "motivation"]
-    },
-    {
-        title: "Web Development Best Practices",
-        file: "web-dev-practices.md",
-        date: "2024-01-25",
-        description: "Essential practices and patterns for building modern, scalable web applications.",
-        tags: ["web-development", "best-practices", "tips"]
-    },
-    {
-        title: "Getting Started with JavaScript",
-        file: "javascript-basics.md",
-        date: "2024-01-20",
-        description: "A comprehensive guide to JavaScript fundamentals for beginners.",
-        tags: ["javascript", "programming", "tutorial"]
-    },
-    {
-        title: "Welcome to My Blog",
-        file: "example-blog.md",
-        date: "2024-01-15",
-        description: "My first blog post introducing myself and sharing my journey.",
-        tags: ["introduction", "personal", "blog"]
+function updateThemeIcon(theme) {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.innerHTML = '';
     }
-].sort((a, b) => new Date(b.date) - new Date(a.date));
+}
 
-// STEPS TO ADD NEW BLOG:
-// 1. Create your-blog-name.md file in /posts/ folder
-// 2. Add YAML frontmatter with tags: ["tag1", "tag2"]
-// 3. Add entry to posts array above
-// 4. Tags will appear in both card view and blog header
+// Auto-discovery of blog posts
+let posts = [];
 
-// Typing animation
-const typingText = document.getElementById('typing-text');
-if (typingText) {
-    const phrases = [
-        "Welcome to my digital space",
-        "Sharing knowledge and insights",
-        "Exploring technology and beyond"
+// Load posts dynamically from posts-index.json
+async function loadPostsFromDirectory() {
+    try {
+        // Load the posts index
+        const indexResponse = await fetch('posts/posts-index.json');
+        const knownPosts = indexResponse.ok ? await indexResponse.json() : [
+            'aws-cloud-architecture.md',
+            'dynamic-template.md',
+            'example-blog.md',
+            'javascript-basics.md',
+            'my-coding-journey.md',
+            'template.md',
+            'web-dev-practices.md'
+        ];
+        
+        const loadedPosts = [];
+        
+        for (const filename of knownPosts) {
+            try {
+                const response = await fetch(`posts/${filename}`);
+                if (response.ok) {
+                    const content = await response.text();
+                    const { frontmatter } = parseFrontmatter(content);
+                    
+                    const post = {
+                        title: frontmatter.title || filename.replace('.md', '').replace(/-/g, ' '),
+                        file: filename,
+                        date: frontmatter.date || new Date().toISOString().split('T')[0],
+                        description: frontmatter.description || frontmatter.summary || 'No description available',
+                        tags: Array.isArray(frontmatter.tags) ? frontmatter.tags : []
+                    };
+                    
+                    loadedPosts.push(post);
+                }
+            } catch (error) {
+                console.log(`Could not load ${filename}:`, error);
+            }
+        }
+        
+        // Sort by date DESC
+        posts = loadedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        return posts;
+    } catch (error) {
+        console.error('Error loading posts:', error);
+        return [];
+    }
+}
+
+// TO ADD NEW BLOG:
+// 1. Create your-blog-name.md file in /posts/ folder with frontmatter:
+//    ---
+//    title: "Your Blog Title"
+//    date: "2024-02-10"
+//    description: "Brief description"
+//    tags: ["tag1", "tag2"]
+//    ---
+// 2. Add filename to knownPosts array above
+// 3. Refresh page - it will auto-load!
+
+// Hobby typing animation for terminal panel
+function initHobbyTyping() {
+    const hobbyText = document.getElementById('hobby-text');
+    if (!hobbyText) return;
+    
+    const hobbies = [
+        "Cloud Architecture 🏗️",
+        "Terraform Modules 🔧",
+        "Kubernetes Clusters ⚙️",
+        "DevOps Automation 🚀",
+        "AWS Solutions 📊"
     ];
     
-    let phraseIndex = 0;
+    let hobbyIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
     
-    function typeWriter() {
-        const currentPhrase = phrases[phraseIndex];
+    function typeHobby() {
+        const currentHobby = hobbies[hobbyIndex];
         
         if (isDeleting) {
-            typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+            hobbyText.textContent = currentHobby.substring(0, charIndex - 1);
             charIndex--;
         } else {
-            typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+            hobbyText.textContent = currentHobby.substring(0, charIndex + 1);
             charIndex++;
         }
         
-        let typeSpeed = isDeleting ? 75 : 120;
+        let typeSpeed = isDeleting ? 50 : 100;
         
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            typeSpeed = 2500;
+        if (!isDeleting && charIndex === currentHobby.length) {
+            typeSpeed = 2000;
             isDeleting = true;
         } else if (isDeleting && charIndex === 0) {
             isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            typeSpeed = 800;
+            hobbyIndex = (hobbyIndex + 1) % hobbies.length;
+            typeSpeed = 500;
         }
         
-        setTimeout(typeWriter, typeSpeed);
+        setTimeout(typeHobby, typeSpeed);
     }
     
-    typeWriter();
+    typeHobby();
 }
 
 // Filter posts based on search query
@@ -128,25 +150,31 @@ function renderPostsList(postsToRender = posts) {
     const postsContainer = document.getElementById('posts-container');
     if (!postsContainer) return;
     
-    postsContainer.innerHTML = '';
+    // Show loading state
+    postsContainer.innerHTML = '<div class="loading-state">Loading posts...</div>';
     
-    if (postsToRender.length === 0) {
-        postsContainer.innerHTML = '<div class="no-results">No posts found matching your search.</div>';
-        return;
-    }
+    // Simulate brief loading for better UX
+    setTimeout(() => {
+        postsContainer.innerHTML = '';
+        
+        if (postsToRender.length === 0) {
+            postsContainer.innerHTML = '<div class="no-results">No posts found matching your search.</div>';
+            return;
+        }
     
     postsToRender.forEach(post => {
         const postElement = document.createElement('div');
         postElement.className = 'post-item';
         
-        // Create tags HTML
+        // Create tags HTML with monospace styling
         const tagsHTML = post.tags.map(tag => `<span class="tag">#${tag}</span>`).join(' ');
         
         postElement.innerHTML = `
             <h4 class="post-title">${post.title}</h4>
-            <p class="post-date">${post.date}</p>
+            <p class="post-date">📅 ${post.date}</p>
             <p class="post-description">${post.description}</p>
             <div class="post-tags">${tagsHTML}</div>
+            <div class="read-more">Read →</div>
         `;
         
         // Add click event to open post in new tab
@@ -165,7 +193,7 @@ function renderPostsList(postsToRender = posts) {
             <nav class="navbar">
                 <div class="nav-container">
                     <div class="nav-links">
-                        <a href="index.html" class="nav-link">← Back to Blog</a>
+                        <a href="index.html" class="nav-link terminal-cmd">← back</a>
                     </div>
                     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
                         <span class="sun-icon">☀️</span>
@@ -207,6 +235,7 @@ function renderPostsList(postsToRender = posts) {
 });
         postsContainer.appendChild(postElement);
     });
+    }, 100);
 }
 
 // Setup search functionality
@@ -320,30 +349,206 @@ async function loadPost(filename) {
         }, 100);
         
     } catch (error) {
+        console.error('Error loading post:', error);
         contentDiv.innerHTML = `
-            <h2>Error Loading Post</h2>
-            <p>Sorry, the blog post could not be loaded. Please try again later.</p>
-            <p>Error: ${error.message}</p>
+            <div class="error-panel">
+                <h2>😔 Oops! Post Not Found</h2>
+                <p>The blog post you're looking for couldn't be loaded. This might be a temporary issue.</p>
+                <div class="error-actions">
+                    <button onclick="window.location.reload()" class="cta-button">Try Again</button>
+                    <a href="index.html" class="cta-button" style="margin-left: 10px;">Back to Blog</a>
+                </div>
+            </div>
         `;
     }
 }
 
-// Initialize page
-document.addEventListener('DOMContentLoaded', function() {
-    initTheme();
-    renderPostsList();
-    setupSearch();
+// Smooth scrolling for navigation links
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
 
+// Code typing animation for hero section
+function initCodeTyping() {
+    const typedText = document.getElementById('typed-text');
+    if (!typedText) return;
     
-    // Show welcome message instead of auto-loading post
+    const codeWords = ['"Build"', '"Deploy"', '"Scale"', '"Automate"'];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    function typeCode() {
+        const currentWord = codeWords[wordIndex];
+        
+        if (isDeleting) {
+            typedText.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typedText.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+        }
+        
+        let typeSpeed = isDeleting ? 100 : 150;
+        
+        if (!isDeleting && charIndex === currentWord.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % codeWords.length;
+            typeSpeed = 500;
+        }
+        
+        setTimeout(typeCode, typeSpeed);
+    }
+    
+    typeCode();
+}
+
+// Scrolling quotes animation
+function initScrollingQuotes() {
+    const quotesContainer = document.getElementById('scrolling-quotes');
+    if (!quotesContainer) return;
+    
+    let currentIndex = 0;
+    const quotes = quotesContainer.children;
+    const totalQuotes = quotes.length;
+    
+    if (totalQuotes === 0) return;
+    
+    function scrollToNext() {
+        currentIndex = (currentIndex + 1) % totalQuotes;
+        const translateY = -currentIndex * 40; // 40px per quote (padding + height)
+        quotesContainer.style.transform = `translateY(${translateY}px)`;
+    }
+    
+    // Start scrolling after 2 seconds, then every 3 seconds
+    setTimeout(() => {
+        setInterval(scrollToNext, 3000);
+    }, 2000);
+}
+
+// Chat functionality
+function initChatButton() {
+    const chatButton = document.getElementById('floating-chat');
+    const chatPopup = document.getElementById('chat-popup');
+    let isPopupVisible = false;
+    
+    if (!chatButton || !chatPopup) return;
+    
+    // Toggle wave animation every 5 seconds
+    setInterval(() => {
+        chatButton.classList.add('waving');
+        setTimeout(() => {
+            chatButton.classList.remove('waving');
+        }, 600);
+    }, 5000);
+    
+    // Click handler
+    chatButton.addEventListener('click', () => {
+        isPopupVisible = !isPopupVisible;
+        
+        if (isPopupVisible) {
+            chatPopup.classList.add('show');
+            chatButton.textContent = '💬';
+        } else {
+            chatPopup.classList.remove('show');
+            chatButton.textContent = '👋';
+        }
+    });
+    
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!chatButton.contains(e.target) && !chatPopup.contains(e.target) && isPopupVisible) {
+            isPopupVisible = false;
+            chatPopup.classList.remove('show');
+            chatButton.textContent = '👋';
+        }
+    });
+}
+
+// Scroll to top functionality
+function initScrollToTop() {
+    // Create scroll to top button
+    const scrollBtn = document.createElement('div');
+    scrollBtn.id = 'scroll-to-top';
+    scrollBtn.innerHTML = '↑';
+    scrollBtn.className = 'scroll-to-top';
+    scrollBtn.title = 'Scroll to top';
+    document.body.appendChild(scrollBtn);
+    
+    // Show/hide based on scroll position
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollBtn.classList.add('show');
+        } else {
+            scrollBtn.classList.remove('show');
+        }
+    });
+    
+    // Click handler
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', async function() {
+    initTheme();
+    initCodeTyping();
+    initHobbyTyping();
+    
+    // Load posts dynamically
+    await loadPostsFromDirectory();
+    renderPostsList();
+    
+    setupSearch();
+    setupSmoothScrolling();
+    initChatButton();
+    initScrollToTop();
+
+    // Show VS Code style welcome message
     const contentDiv = document.getElementById('blog-content');
     if (contentDiv) {
         contentDiv.innerHTML = `
-            <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                <h2 style="color: var(--accent-color); margin-bottom: 1rem;">Welcome to My Blog</h2>
-                <p>Click on any blog post above to start reading.</p>
-                <p style="margin-top: 1rem; font-size: 0.9rem;">✨ Use the search bar to find posts by title or tags</p>
+            <div class="welcome-panel">
+                <h2>🚀 Welcome to the Command Center</h2>
+                <p>Select any blog above to begin reading, or use the search to find specific one.</p>
+                <div id="quotes-container" style="margin-top: 2rem; padding: 1rem; background: var(--secondary-bg); border-radius: var(--radius-md); border-left: 4px solid var(--purple-primary); height: 60px; overflow: hidden;">
+                    <div id="scrolling-quotes" style="font-style: italic; color: var(--text-secondary); margin: 0; transition: transform 0.5s ease;">
+                        <p style="margin: 0; padding: 10px 0;">"Infrastructure as Code is not just about automation—it's about building reliable, scalable systems."</p>
+                        <p style="margin: 0; padding: 10px 0;">"The cloud is not just someone else's computer—it's the foundation of modern innovation."</p>
+                        <p style="margin: 0; padding: 10px 0;">"DevOps is not a role, it's a culture of collaboration and continuous improvement."</p>
+                        <p style="margin: 0; padding: 10px 0;">"Automation is the bridge between human creativity and machine efficiency."</p>
+                        <p style="margin: 0; padding: 10px 0;">"Good architecture is invisible—it just works, scales, and adapts."</p>
+                        <p style="margin: 0; padding: 10px 0;">"Monitoring without alerting is just expensive logging."</p>
+                        <p style="margin: 0; padding: 10px 0;">"Security is not a feature, it's a foundation."</p>
+                        <p style="margin: 0; padding: 10px 0;">"The best code is the code you don't have to write."</p>
+                        <p style="margin: 0; padding: 10px 0;">"Fail fast, learn faster, deploy with confidence."</p>
+                        <p style="margin: 0; padding: 10px 0;">"Containers are not just packaging—they're consistency across environments."</p>
+                    </div>
+                </div>
+                <div style="margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted);">
+                    <span style="color: var(--green-primary);">$</span> terraform plan && terraform apply
+                </div>
             </div>
         `;
+        
+        // Initialize scrolling quotes after content is loaded
+        setTimeout(() => {
+            initScrollingQuotes();
+        }, 100);
     }
 });
