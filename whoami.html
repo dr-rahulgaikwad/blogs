@@ -22,16 +22,6 @@
     <meta name="twitter:description" content="About Dr. Rahul Gaikwad - Cloud architect, DevOps advocate, and AI/ML enthusiast.">
     <meta name="twitter:image" content="https://yourdomain.com/assets/images/social-thumbnail.jpg">
     
-    <!-- Google Analytics GA4 -->
-    <!-- Replace GA_MEASUREMENT_ID with your actual GA4 Measurement ID -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -43,48 +33,115 @@
             <a href="whoami.html" class="nav-link active">$whoami</a>
         </div>
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <span class="sun-icon">☀️</span>
-            <span class="moon-icon">🌙</span>
         </button>
     </div>
 </nav>
 
     <!-- About Section -->
-    <section class="about">
-        <div class="about-content">
-            <h1>$whoami</h1>
-            <div class="terminal-output">
-                <p class="prompt">$ whoami</p>
-                <p>Dr. Raul Gaikwad</p>
+    <section class="whoami-section">
+        <div class="whoami-container">
+            <!-- Terminal Header -->
+            <div class="whoami-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-title">whoami.sh - Terminal</div>
+                </div>
                 
-                <p class="prompt">$ cat about.txt</p>
-                <div class="about-text">
-                    <p><pre>👋 Hello there! I’m *Dr. Rahul Gaikwad* — a cloud architect, DevOps advocate, AI/ML enthusiast, and lifelong learner.
-With experience across platforms such as AWS and HashiCorp, I thrive on building infrastructure that scales, architectures that perform, and solutions that automate.
+                <!-- Main Command -->
+                <div class="terminal-content">
+                    <div class="command-line">
+                        <span class="terminal-prompt">rahul@cloud-architect:~$</span>
+                        <span class="command">whoami</span>
+                    </div>
+                    <div class="output"><a href="https://dr-rahulgaikwad.com/" target="_blank" class="name-link">Dr. Rahul Gaikwad</a></div>
+                </div>
+            </div>
 
-When I’m not designing cloud systems or delivering workshops, you'll find me:
-
-* 🌿 Exploring the outdoors — hiking trails and nature’s code
-* 🎸 Playing guitar — letting rhythm break the logic
-* 📚 Reading sci-fi and tech futures — where tomorrow’s systems come alive
-
-My passion? Bridging technology, community, and purpose—helping others build, learn, and innovate. Welcome to my corner on the web.</pre></p>
-                    <p>This blog serves as my personal knowledge repository where I share insights, experiences, and learnings.</p>
+            <!-- First Row: About & Tech Stack -->
+            <div class="about-row">
+                <!-- What I Do Panel -->
+                <div class="bio-panel large">
+                    <div class="panel-header">
+                        <span class="panel-icon">💻</span>
+                        <h2>cat ~/what-i-do.txt</h2>
+                    </div>
+                    <div class="bio-content">
+                        <p>👋 Hello there! I'm <strong><a href="https://dr-rahulgaikwad.com/" target="_blank" class="name-link">Dr. Rahul Gaikwad</a></strong> — a cloud architect, DevOps advocate, AI/ML enthusiast, and lifelong learner.</p>
+                        <p>With experience across platforms such as AWS and HashiCorp, I thrive on building infrastructure that scales, architectures that perform, and solutions that automate.</p>
+                        <p>This blog serves as my personal knowledge repository where I share insights, experiences, and learnings from the ever-evolving world of cloud technology.</p>
+                        <p>I specialize in designing resilient cloud architectures, implementing Infrastructure as Code, and building CI/CD pipelines that enable teams to deploy with confidence.</p>
+                    </div>
                 </div>
 
-                <p class="prompt">$ ls skills/</p>
-                <ul class="skills-list">
-                    <li>Skill 1</li>
-                    <li>Skill 2</li>
-                    <li>Skill 3</li>
-                    <li>Skill 4</li>
-                </ul>
+                <!-- Tech Stack Panel -->
+                <div class="skills-panel">
+                    <div class="panel-header">
+                        <span class="panel-icon">🛠️</span>
+                        <h2>Tech Stack</h2>
+                    </div>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Cloud Platforms</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag aws">AWS</span>
+                                <span class="skill-tag azure">Azure</span>
+                                <span class="skill-tag gcp">GCP</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>DevOps & IaC</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag terraform">Terraform</span>
+                                <span class="skill-tag docker">Docker</span>
+                                <span class="skill-tag k8s">Kubernetes</span>
+                                <span class="skill-tag ansible">Ansible</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Programming</h3>
+                            <div class="skill-tags">
+                                <span class="skill-tag python">Python</span>
+                                <span class="skill-tag js">JavaScript</span>
+                                <span class="skill-tag go">Go</span>
+                                <span class="skill-tag bash">Bash</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <p class="prompt">$ contact --info</p>
-                <div class="contact-info">
-                    <p>Email: <a href="mailto:rahulgaikwad1986@gmail.com">rahulgaikwad1986@gmail.com</a></p>
-                    <p>LinkedIn:<a href= "https://www.linkedin.com/in/dr-rahul-gaikwad/">https://www.linkedin.com/in/dr-rahul-gaikwad/</a></p>
-                    <p>GitHub:<a href= "https://github.com/dr-rahulgaikwad">https://github.com/dr-rahulgaikwad</a></p>
+            <!-- Did You Know Panel -->
+            <div class="did-you-know-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">💡</span>
+                    <h2>Did you know?</h2>
+                </div>
+                <div class="hobby-content">
+                    <span class="hobby-comment">// Away From the Keyboard...</span>
+                    <div class="hobby-line">
+                        <span class="hobby-keyword">const</span> <span class="hobby-variable">myHobbies</span> <span class="hobby-operator">=</span> <span class="hobby-bracket">[</span><span id="hobby-typing"></span><span class="cursor">|</span><span class="hobby-bracket">];</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Let's Connect Panel -->
+            <div class="contact-panel">
+                <div class="panel-header">
+                    <span class="panel-icon">📫</span>
+                    <h2>Let's Connect</h2>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:rahulgaikwad1986@gmail.com" class="contact-link email">
+                        <span class="contact-icon">📧</span>
+                        <span>rahulgaikwad1986@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dr-rahul-gaikwad/" class="contact-link linkedin" target="_blank">
+                        <span class="contact-icon">💼</span>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                    <a href="https://github.com/dr-rahulgaikwad" class="contact-link github" target="_blank">
+                        <span class="contact-icon">🐙</span>
+                        <span>GitHub Profile</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -92,9 +149,121 @@ My passion? Bridging technology, community, and purpose—helping others build, 
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 · Dr. Rahul Gaikwad. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://dr-rahulgaikwad.com/" class="footer-link" target="_blank">Portfolio</a>
+                <a href="https://www.linkedin.com/in/dr-rahul-gaikwad/" class="footer-link" target="_blank">LinkedIn</a>
+                <a href="https://github.com/dr-rahulgaikwad" class="footer-link" target="_blank">GitHub</a>
+                <a href="https://youtube.com/@dr.rahulgaikwad?si=Tlyy4GhkZjbRCGh0" class="footer-link" target="_blank">YouTube</a>
+                <a href="https://builder.aws.com/community/@rahulgaikwad" class="footer-link" target="_blank">AWS Builder</a>
+                <a href="https://x.com/Dr_RahulGaikwad" class="footer-link" target="_blank">Twitter/X</a>
+            </div>
+            <p class="footer-text">&copy; 2025 · Dr. Rahul Gaikwad</p>
+        </div>
     </footer>
 
+    <!-- Floating Chat Button -->
+    <div id="floating-chat" class="floating-chat" title="AI Chat Assistant">
+        👋
+    </div>
+    
+    <!-- Chat Popup -->
+    <div id="chat-popup" class="chat-popup">
+        <h3>🤖 AI Assistant</h3>
+        <p>Coming Soon! AI-powered chat to help you navigate and find relevant content.</p>
+    </div>
+
     <script src="assets/js/main.js"></script>
+    <script>
+        // Hobby typing animation for "Did you know?" section
+        function initHobbyTyping() {
+            const hobbyText = document.getElementById('hobby-typing');
+            if (!hobbyText) return;
+            
+            const hobbies = [
+                '"🎸 Playing Guitar"',
+                '"🥾 Hiking in Nature"',
+                '"📚 Reading Sci-Fi"',
+                '"📸 Nature Photography"',
+                '"☕ Coffee Brewing"'
+            ];
+            
+            let hobbyIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function typeHobby() {
+                const currentHobby = hobbies[hobbyIndex];
+                
+                if (isDeleting) {
+                    hobbyText.textContent = currentHobby.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    hobbyText.textContent = currentHobby.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                
+                let typeSpeed = isDeleting ? 50 : 100;
+                
+                if (!isDeleting && charIndex === currentHobby.length) {
+                    typeSpeed = 1200;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    hobbyIndex = (hobbyIndex + 1) % hobbies.length;
+                    typeSpeed = 300;
+                }
+                
+                setTimeout(typeHobby, typeSpeed);
+            }
+            
+            typeHobby();
+        }
+        
+        // Chat functionality
+        function initChatButton() {
+            const chatButton = document.getElementById('floating-chat');
+            const chatPopup = document.getElementById('chat-popup');
+            let isPopupVisible = false;
+            
+            if (!chatButton || !chatPopup) return;
+            
+            // Toggle wave animation every 5 seconds
+            setInterval(() => {
+                chatButton.classList.add('waving');
+                setTimeout(() => {
+                    chatButton.classList.remove('waving');
+                }, 600);
+            }, 5000);
+            
+            // Click handler
+            chatButton.addEventListener('click', () => {
+                isPopupVisible = !isPopupVisible;
+                
+                if (isPopupVisible) {
+                    chatPopup.classList.add('show');
+                    chatButton.textContent = '💬';
+                } else {
+                    chatPopup.classList.remove('show');
+                    chatButton.textContent = '👋';
+                }
+            });
+            
+            // Close popup when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!chatButton.contains(e.target) && !chatPopup.contains(e.target) && isPopupVisible) {
+                    isPopupVisible = false;
+                    chatPopup.classList.remove('show');
+                    chatButton.textContent = '👋';
+                }
+            });
+        }
+        
+        // Initialize typing animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initHobbyTyping();
+            initChatButton();
+        });
+    </script>
 </body>
 </html>

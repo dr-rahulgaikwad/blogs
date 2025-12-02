@@ -37,41 +37,59 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-    <div class="nav-container">
-        <div class="nav-links">
-            <a href="index.html" class="nav-link">Blogs</a>
-            <a href="whoami.html" class="nav-link">$whoami</a>
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#blog-section" class="nav-link active"><span class="blink-dot">●</span>Blog</a>
+                <a href="whoami.html" class="nav-link terminal-cmd"><span class="blink-dot">●</span>$whoami</a>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+            </button>
         </div>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <span class="sun-icon">☀️</span>
-            <span class="moon-icon">🌙</span>
-        </button>
-    </div>
-</nav>
+    </nav>
 
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <pre class="ascii-title">
- ____            ____       _           _    ____       _ _                         _
-|  _ \ _ __     |  _ \ __ _| |__  _   _| |  / ___| __ _(_) | ____      ____  _____ | |
-| | | | '__|    | |_) / _` | '_ \| | | | | | |  _ / _` | | |/ /\ \ /\ / / _` |/ _ `| |
-| |_| | |    _  |  _ < (_| | | | | |_| | | | |_| | (_| | |   <  \ V  V / (_| | (_| | |
-|____/|_|   |_| |_| \_\__,_|_| |_|\__,_|_|  \____|\__,_|_|_|\_\  \_/\_/ \__,_|\__,_|_|
-            </pre>
-            <h2 class="subtitle">
-                <span id="typing-text"></span>
-                <span class="cursor">|</span>
-            </h2>
+            <a href="https://dr-rahulgaikwad.com/" target="_blank" class="author-name" title="Visit Portfolio">________              __________        .__          .__      ________       .__ __                         .___
+\______ \_______      \______   \_____  |  |__  __ __|  |    /  _____/_____  |__|  | ____  _  _______     __| _/
+ |    |  \_  __ \      |       _/\__  \ |  |  \|  |  \  |   /   \  ___\__  \ |  |  |/ /\ \/ \/ /\__  \   / __ | 
+ |    `   \  | \/      |    |   \ / __ \|   Y  \  |  /  |__ \    \_\  \/ __ \|  |    <  \     /  / __ \_/ /_/ | 
+/_______  /__|     /\  |____|_  /(____  /___|  /____/|____/  \______  (____  /__|__|_ \  \/\_/  (____  /\____ | 
+        \/         \/         \/      \/     \/                     \/     \/        \/              \/      \/ 
+    </a>
+            <div class="whoami-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-title">philosophy.js - Terminal</div>
+                </div>
+                <div class="terminal-content">
+                    <div class="code-block">
+                        <span class="code-comment">// My development philosophy</span>
+                        <div class="code-line">
+                            <span class="code-keyword">const</span> <span class="code-variable">myApproach</span> <span class="code-operator">=</span> <span class="code-bracket">[</span><span id="typed-text" class="typed-text"></span><span class="cursor">|</span><span class="code-bracket">];</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="hero-subtitle">Cloud Builder & Infrastructure Architect</p>
+            <p class="hero-description">Building scalable solutions with AWS, Terraform, and modern DevOps practices</p>
+
+            <div class="hero-cta">
+                <a href="#blog-section" class="cta-button primary">Read Latest Blog</a>
+            </div>
         </div>
     </section>
 
+    </section>
+
     <!-- Blog List Section -->
-    <section class="blog-list">
-        <h3>Recent Posts</h3>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search posts by title or tags..." />
+    <section id="blog-section" class="blog-list">
+        <div class="blog-header">
+            <h2 class="section-title">Latest Blogs</h2>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="🔍 Search posts by title or tags..." />
+            </div>
         </div>
         <div id="posts-container">
             <!-- Blog posts will be loaded here -->
@@ -85,10 +103,46 @@
         </div>
     </main>
 
+    <!-- Chat Placeholder -->
+    <section class="chat-placeholder">
+        <div class="chat-container">
+            <div class="chat-card">
+                <h3>💬 Chat With The Site</h3>
+                <p>Coming Soon: AI-powered blog assistant to help you find relevant content</p>
+                <div class="chat-preview">
+                    <div class="chat-bubble">"Tell me about AWS architecture patterns"</div>
+                    <div class="chat-bubble ai">"I found 3 relevant posts about AWS architecture..."</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2025 · Dr. Rahul Gaikwad. All rights reserved.</p>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://dr-rahulgaikwad.com/" class="footer-link" target="_blank">Portfolio</a>
+                <a href="https://www.linkedin.com/in/dr-rahul-gaikwad/" class="footer-link" target="_blank">LinkedIn</a>
+                <a href="https://github.com/dr-rahulgaikwad" class="footer-link" target="_blank">GitHub</a>
+                <a href="https://youtube.com/@dr.rahulgaikwad?si=Tlyy4GhkZjbRCGh0" class="footer-link" target="_blank">YouTube</a>
+                <a href="https://builder.aws.com/community/@rahulgaikwad" class="footer-link" target="_blank">AWS Builder</a>
+                <a href="https://x.com/Dr_RahulGaikwad" class="footer-link" target="_blank">Twitter/X</a>
+            </div>
+            <div class="footer-divider"></div>
+            <p class="footer-text">&copy; 2025 Dr. Rahul Gaikwad</p>
+        </div>
     </footer>
+
+    <!-- Floating Chat Button -->
+    <div id="floating-chat" class="floating-chat" title="AI Chat Assistant">
+        👋
+    </div>
+    
+    <!-- Chat Popup -->
+    <div id="chat-popup" class="chat-popup">
+        <h3>🤖 AI Assistant</h3>
+        <p>Coming Soon! AI-powered chat to help you navigate and find relevant content.</p>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
