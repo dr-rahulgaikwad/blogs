@@ -35,15 +35,10 @@ async function loadPostsFromDirectory() {
     try {
         // Load the posts index
         const indexResponse = await fetch('posts/posts-index.json');
-        const knownPosts = indexResponse.ok ? await indexResponse.json() : [
-            'aws-cloud-architecture.md',
-            'dynamic-template.md',
-            'example-blog.md',
-            'javascript-basics.md',
-            'my-coding-journey.md',
-            'template.md',
-            'web-dev-practices.md'
-        ];
+        if (!indexResponse.ok) {
+            throw new Error('Failed to load posts index');
+        }
+        const knownPosts = await indexResponse.json();
         
         const loadedPosts = [];
         
@@ -528,16 +523,18 @@ document.addEventListener('DOMContentLoaded', async function() {
                 <p>Select any blog above to begin reading, or use the search to find specific one.</p>
                 <div id="quotes-container" style="margin-top: 2rem; padding: 1rem; background: var(--secondary-bg); border-radius: var(--radius-md); border-left: 4px solid var(--purple-primary); height: 60px; overflow: hidden;">
                     <div id="scrolling-quotes" style="font-style: italic; color: var(--text-secondary); margin: 0; transition: transform 0.5s ease;">
-                        <p style="margin: 0; padding: 10px 0;">"Infrastructure as Code is not just about automation—it's about building reliable, scalable systems."</p>
-                        <p style="margin: 0; padding: 10px 0;">"The cloud is not just someone else's computer—it's the foundation of modern innovation."</p>
-                        <p style="margin: 0; padding: 10px 0;">"DevOps is not a role, it's a culture of collaboration and continuous improvement."</p>
-                        <p style="margin: 0; padding: 10px 0;">"Automation is the bridge between human creativity and machine efficiency."</p>
-                        <p style="margin: 0; padding: 10px 0;">"Good architecture is invisible—it just works, scales, and adapts."</p>
-                        <p style="margin: 0; padding: 10px 0;">"Monitoring without alerting is just expensive logging."</p>
-                        <p style="margin: 0; padding: 10px 0;">"Security is not a feature, it's a foundation."</p>
-                        <p style="margin: 0; padding: 10px 0;">"The best code is the code you don't have to write."</p>
-                        <p style="margin: 0; padding: 10px 0;">"Fail fast, learn faster, deploy with confidence."</p>
-                        <p style="margin: 0; padding: 10px 0;">"Containers are not just packaging—they're consistency across environments."</p>
+                        <p style="margin: 0; padding: 10px 0;">"Everything fails all the time." <span style="opacity: 0.7;">— Werner Vogels, AWS CTO</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"You build it, you run it." <span style="opacity: 0.7;">— Werner Vogels, AWS</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"There is no compression algorithm for experience." <span style="opacity: 0.7;">— Andy Jassy, AWS CEO</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Builders are never done building." <span style="opacity: 0.7;">— AWS</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Infrastructure as code enables you to treat your infrastructure like software." <span style="opacity: 0.7;">— HashiCorp</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Design for failure and nothing fails." <span style="opacity: 0.7;">— AWS Well-Architected</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Make it work, make it right, make it fast." <span style="opacity: 0.7;">— Kent Beck</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Simplicity is prerequisite for reliability." <span style="opacity: 0.7;">— Edsger Dijkstra</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Hope is not a strategy." <span style="opacity: 0.7;">— Google SRE</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Security is job zero." <span style="opacity: 0.7;">— AWS</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"The best code is no code at all." <span style="opacity: 0.7;">— Jeff Atwood</span></p>
+                        <p style="margin: 0; padding: 10px 0;">"Automate everything you can." <span style="opacity: 0.7;">— Netflix Tech Blog</span></p>
                     </div>
                 </div>
                 <div style="margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-muted);">

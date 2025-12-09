@@ -1,3 +1,12 @@
+---
+title: "Welcome to My Blog"
+date: "2025-12-09"
+description: "Hello and welcome to my personal blog! This is my first post where I'd like to introduce myself and share what you can expect from this space...."
+tags: [""]
+author: "Dr. Rahul Gaikwad"
+readTime: "1 min"
+---
+
 # Welcome to My Blog
 
 ## Introduction

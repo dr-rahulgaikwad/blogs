@@ -1,9 +1,10 @@
 [
-  "aws-cloud-architecture.md",
-  "dynamic-template.md",
   "example-blog.md",
   "javascript-basics.md",
-  "my-coding-journey.md",
   "template.md",
+  "smart-infra-discovery-with-terraform-search-and-kiro-agent-hooks.md",
+  "aws-cloud-architecture.md",
+  "my-coding-journey.md",
+  "dynamic-template.md",
   "web-dev-practices.md"
 ]

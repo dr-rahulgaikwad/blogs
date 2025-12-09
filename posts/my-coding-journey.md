@@ -1,13 +1,10 @@
 ---
 title: "My Journey from Beginner to Cloud Architect"
 date: "2024-02-01"
-author: "Dr. Rahul Gaikwad"
+description: "It all started with a simple "Hello World" program. Like many developers, I had no idea that this small step would lead to an incredible journey in te..."
 tags: ["personal", "career", "journey", "motivation"]
-category: "personal"
+author: "Dr. Rahul Gaikwad"
 readTime: "6 min"
-layout: "story"
-summary: "A personal reflection on my coding journey, challenges faced, lessons learned, and advice for aspiring developers."
-mood: "reflective"
 ---
 
 # The Beginning

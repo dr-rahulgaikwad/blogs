@@ -1,3 +1,12 @@
+---
+title: "Blog Post Title"
+date: "2025-12-09"
+description: "Brief overview of what this post covers and why it matters. Keep it concise and engaging - this is what readers see first...."
+tags: [""]
+author: "Dr. Rahul Gaikwad"
+readTime: "1 min"
+---
+
 # [Blog Post Title]
 
 **Date:** YYYY-MM-DD  

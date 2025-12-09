@@ -1,13 +1,10 @@
 ---
 title: "Building Scalable AWS Cloud Architecture"
 date: "2024-02-05"
-author: "Dr. Rahul Gaikwad"
+description: "Cloud architecture is the foundation of modern applications. This guide covers essential AWS services and patterns for building robust, scalable syste..."
 tags: ["aws", "cloud", "architecture", "devops"]
-category: "cloud-computing"
+author: "Dr. Rahul Gaikwad"
 readTime: "8 min"
-layout: "technical"
-summary: "Learn how to design and implement scalable cloud architectures on AWS using best practices for high availability, security, and cost optimization."
-difficulty: "Intermediate"
 ---
 
 ## Overview

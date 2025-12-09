@@ -1,3 +1,12 @@
+---
+title: "Getting Started with JavaScript"
+date: "2025-12-09"
+description: "JavaScript is the programming language of the web. This comprehensive guide covers the fundamentals you need to start your JavaScript journey, from ba..."
+tags: [""]
+author: "Dr. Rahul Gaikwad"
+readTime: "3 min"
+---
+
 # Getting Started with JavaScript
 
 **Date:** 2024-01-20  

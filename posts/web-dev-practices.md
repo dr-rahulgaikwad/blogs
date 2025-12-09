@@ -1,12 +1,10 @@
 ---
 title: "Web Development Best Practices"
 date: "2024-01-25"
-author: "Dr. Rahul Gaikwad"
+description: "Modern web development requires following established best practices to create applications that are scalable, maintainable, and performant...."
 tags: ["web-development", "best-practices", "tips"]
-category: "development"
+author: "Dr. Rahul Gaikwad"
 readTime: "6 min"
-layout: "technical"
-summary: "Essential practices and patterns for building modern, scalable web applications that perform well and are maintainable."
 ---
 
 ## Introduction

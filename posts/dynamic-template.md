@@ -1,12 +1,10 @@
 ---
 title: "Dynamic Blog Template Example"
 date: "2024-01-30"
-author: "Dr. Rahul Gaikwad"
+description: "This blog post demonstrates the flexible template system that adapts to different content patterns...."
 tags: ["template", "dynamic", "markdown"]
-category: "tutorial"
+author: "Dr. Rahul Gaikwad"
 readTime: "5 min"
-layout: "technical"
-summary: "Example of a dynamic blog post with YAML frontmatter for flexible rendering."
 ---
 
 # Dynamic Blog Template Example
