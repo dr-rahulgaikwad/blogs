@@ -1,3 +1,12 @@
+---
+title: "Zero Context Switching: Manage Infrastructure Right Inside Your IDE"
+date: "2025-12-12"
+description: "<img width="1100" height="614" alt="image" src="https://github.com/user-attachments/assets/80c9ea1d-fb5a-4cb1-ab53-521fa385be72" />..."
+tags: []
+author: "Dr. Rahul Gaikwad"
+readTime: "10 min"
+---
+
 # Zero Context Switching: Manage Infrastructure Right Inside Your IDE
 <img width="1100" height="614" alt="image" src="https://github.com/user-attachments/assets/80c9ea1d-fb5a-4cb1-ab53-521fa385be72" />
 
