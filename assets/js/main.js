@@ -34,7 +34,7 @@ let posts = [];
 async function loadPostsFromDirectory() {
     try {
         // Load the posts index
-        const indexResponse = await fetch('./posts/posts-index.json');
+        const indexResponse = await fetch('./blogs/posts/posts-index.json');
         if (!indexResponse.ok) {
             throw new Error('Failed to load posts index');
         }
@@ -44,7 +44,7 @@ async function loadPostsFromDirectory() {
         
         for (const filename of knownPosts) {
             try {
-                const response = await fetch(`./posts/${filename}`);
+                const response = await fetch(`./blogs/posts/${filename}`);
                 if (response.ok) {
                     const content = await response.text();
                     const { frontmatter } = parseFrontmatter(content);
@@ -167,7 +167,7 @@ function renderPostsList(postsToRender = posts) {
         // Extract thumbnail from post content
         let thumbnailHTML = '';
         try {
-            const response = await fetch(`./posts/${post.file}`);
+            const response = await fetch(`./blogs/posts/${post.file}`);
             if (response.ok) {
                 const content = await response.text();
                 const imageMatch = content.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i) || 
@@ -337,7 +337,7 @@ async function loadPost(filename) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     try {
-        const response = await fetch(`./posts/${filename}`);
+        const response = await fetch(`./blogs/posts/${filename}`);
         if (!response.ok) {
             throw new Error('Post not found');
         }
