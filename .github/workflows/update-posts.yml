@@ -6,6 +6,9 @@ on:
       - 'posts/*.md'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-posts:
     runs-on: ubuntu-latest
@@ -26,8 +29,8 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add posts/posts-index.json
-        git diff --staged --quiet || git commit -m "Auto-update posts index [skip ci]"
+        git add posts/*.md posts/posts-index.json
+        git diff --staged --quiet || git commit -m "Auto-update posts with metadata [skip ci]"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
